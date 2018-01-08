@@ -1,3 +1,11 @@
+# windows files
+*.DS_Store
+
+# zip and pdf files downloaded to the course
+*.zip
+*.pdf
+
+# Editor
 *~
 
 # Byte-compiled / optimized / DLL files
