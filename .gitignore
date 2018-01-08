@@ -8,6 +8,9 @@
 # Editor
 *~
 
+# Pycharm
+.idea
+
 ##########
 # PYTHON #
 ##########
