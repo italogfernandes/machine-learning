@@ -8,7 +8,7 @@ from sklearn.svm import SVR
 from sklearn.preprocessing import StandardScaler
 
 # Importing the dataset
-dataset = pd.read_csv('Position_Salaries.csv')
+dataset = pd.read_csv('../datasets/Position_Salaries.csv')
 X = dataset.iloc[:, 1:2].values
 y = dataset.iloc[:, 2].values
 X = np.array(X,dtype=float)
