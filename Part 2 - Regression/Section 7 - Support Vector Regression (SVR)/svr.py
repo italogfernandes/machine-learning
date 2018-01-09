@@ -11,6 +11,9 @@ from sklearn.preprocessing import StandardScaler
 dataset = pd.read_csv('Position_Salaries.csv')
 X = dataset.iloc[:, 1:2].values
 y = dataset.iloc[:, 2].values
+X = np.array(X,dtype=float)
+X = X.reshape(len(X),1)
+y = np.array(y,dtype=float)
 
 # Splitting the dataset into the Training set and Test set
 """from sklearn.cross_validation import train_test_split
@@ -24,6 +27,7 @@ y = sc_y.fit_transform(y.reshape(len(y),1))
 
 # Fitting SVR to the dataset
 regressor = SVR(kernel='rbf')
+y.reshape(1,len(y))
 regressor.fit(X, y)
 
 # Predicting a new result
@@ -31,13 +35,13 @@ teste_employe = sc_X.transform(np.array([[6.5]]))
 teste_salary = regressor.predict(teste_employe)
 
 # Visualising the SVR results
-plt.scatter(sc_X.inverse_transform(X), sc_y.inverse_transform(y), color = 'red')
+"""plt.scatter(sc_X.inverse_transform(X), sc_y.inverse_transform(y), color = 'red')
 plt.plot(sc_X.inverse_transform(X), sc_y.inverse_transform(regressor.predict(X)), color = 'blue')
-plt.scatter(sc_X.inverse_transform(teste_employe), sc_X.inverse_transform(teste_salary), marker = 'o', color = 'green')
+plt.scatter(sc_X.inverse_transform(teste_employe), sc_y.inverse_transform(teste_salary), marker = 'o', color = 'green')
 plt.title('Truth or Bluff (SVR)')
 plt.xlabel('Position level')
 plt.ylabel('Salary')
-plt.show()
+plt.show()"""
 
 # Visualising the SVR results (for higher resolution and smoother curve)
 X_grid = np.arange(min(X), max(X), 0.01) # choice of 0.01 instead of 0.1 step because the data is feature scaled
