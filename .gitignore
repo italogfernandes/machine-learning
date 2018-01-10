@@ -4,6 +4,7 @@
 # zip and pdf files downloaded to the course
 *.zip
 *.pdf
+*.png
 
 # Editor
 *~
