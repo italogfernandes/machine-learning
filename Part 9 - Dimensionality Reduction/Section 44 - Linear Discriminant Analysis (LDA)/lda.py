@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
-dataset = pd.read_csv('Wine.csv')
-X = dataset.iloc[:, 0:13].values
-y = dataset.iloc[:, 13].values
+dataset = pd.read_csv('../datasets/Wine.csv')
+X = dataset.iloc[:, 0:-1].values
+y = dataset.iloc[:, -1].values
 
 # Splitting the dataset into the Training set and Test set
 from sklearn.model_selection import train_test_split
@@ -38,13 +38,21 @@ y_pred = classifier.predict(X_test)
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
+erros_up = cm[0,1] + cm[0,2] + cm[1,2]
+erros_down = cm[1,0] + cm[2,0] + cm[2,1]
+acertos = np.sum([cm[i,i] for i in range(len(cm))])
+total = np.sum(cm)
+accuracy = float(acertos)/total
+print(cm)
+print(accuracy)
+
 # Visualising the Training set results
 from matplotlib.colors import ListedColormap
 X_set, y_set = X_train, y_train
 X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
                      np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
 plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-             alpha = 0.75, cmap = ListedColormap(('red', 'green', 'blue')))
+             alpha = 0.2, cmap = ListedColormap(('red', 'green', 'blue')))
 plt.xlim(X1.min(), X1.max())
 plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
@@ -62,7 +70,7 @@ X_set, y_set = X_test, y_test
 X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
                      np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
 plt.contourf(X1, X2, classifier.predict(np.array([X1.ravel(), X2.ravel()]).T).reshape(X1.shape),
-             alpha = 0.75, cmap = ListedColormap(('red', 'green', 'blue')))
+             alpha = 0.2, cmap = ListedColormap(('red', 'green', 'blue')))
 plt.xlim(X1.min(), X1.max())
 plt.ylim(X2.min(), X2.max())
 for i, j in enumerate(np.unique(y_set)):
