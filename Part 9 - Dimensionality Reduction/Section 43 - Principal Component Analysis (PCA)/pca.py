@@ -37,17 +37,7 @@ classifier.fit(X_train, y_train)
 y_pred = classifier.predict(X_test)
 
 # Making the Confusion Matrix
-from sklearn.metrics import confusion_matrix
-cm = confusion_matrix(y_test, y_pred)
-  
-erros_up = cm[0,1] + cm[0,2] + cm[1,2]
-erros_down = cm[1,0] + cm[2,0] + cm[2,1]
-acertos = np.sum([cm[i,i] for i in range(len(cm))])
-total = np.sum(cm)
-accuracy = float(acertos)/total
-print(cm)
-print(accuracy)
-
+print(regressor_OLS.summary())
 
 
 # Visualising the Test set results 3 dimencoes
